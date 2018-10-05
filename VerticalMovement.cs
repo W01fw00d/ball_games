@@ -29,15 +29,17 @@ public class VerticalMovement : MonoBehaviour {
     // It's called at a fixed rate
     // Add here physics calculations
     void FixedUpdate () {
-        float vertical = Input.GetAxisRaw(axis);
-        Debug.Log(vertical);
+        //Debug.Log(vertical);
+        if (GameManager.sharedInstance.gameStarted)
+        {
+            float vertical = Input.GetAxisRaw(axis);
+            Vector2 movement = new Vector2(0, vertical);
 
-        Vector2 movement = new Vector2(0, vertical);
+            //        rb2d.AddForce(movement * speed);
+            rb2d.velocity = movement * speed;
 
-//        rb2d.AddForce(movement * speed);
-        rb2d.velocity = movement * speed;
-
-//        float horizontal = Input.GetAxisRaw("Horizontal");
-//        rb2d.rotation += horizontal; 
+            //        float horizontal = Input.GetAxisRaw("Horizontal");
+            //        rb2d.rotation += horizontal; 
+        }
     }
 }
