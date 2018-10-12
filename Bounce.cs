@@ -53,10 +53,10 @@ public class Bounce : MonoBehaviour
 
     private int getObjectX(Collision2D collision)
     {
-        if (collision.gameObject.name == "RacketLeft") {
+        if (collision.gameObject.name == "RacketLeft" || collision.gameObject.name == "WallLeft") {
             x = 1;
         }
-        else if (collision.gameObject.name == "RacketRight") {
+        else if (collision.gameObject.name == "RacketRight" || collision.gameObject.name == "WallRight") {
             x = -1;
         }
 
