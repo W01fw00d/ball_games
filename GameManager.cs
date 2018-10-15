@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
         if (
             Mathf.Round(mainCamera.transform.position.x) == leftWonTitleCenterPosition ||
             Mathf.Round(mainCamera.transform.position.x) == rightWonTitleCenterPosition
-            ) {
+        ) {
             fixedCamera = true;
         }
 

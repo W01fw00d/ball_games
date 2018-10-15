@@ -16,9 +16,6 @@ public class VerticalMovement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		rb2d = GetComponent<Rigidbody2D>();
-        
-//        parentscriptclass myParent = transform.parent.GetComponent<parentscriptclass>();
-//        myParent.speed
 	}
 
 	// Update is called once per frame
@@ -35,11 +32,7 @@ public class VerticalMovement : MonoBehaviour {
             float vertical = Input.GetAxisRaw(axis);
             Vector2 movement = new Vector2(0, vertical);
 
-            //        rb2d.AddForce(movement * speed);
             rb2d.velocity = movement * speed;
-
-            //        float horizontal = Input.GetAxisRaw("Horizontal");
-            //        rb2d.rotation += horizontal; 
         }
     }
 }

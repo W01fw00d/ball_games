@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Bounce : MonoBehaviour
 {
-
     public float speed = 15;
 
+    private float targetTime = 0.0f;
+    private float limitTime = 10.0f;
     private Rigidbody2D rb2d;
     private int x;
     private bool hasObjectMoved = false;
@@ -20,11 +21,27 @@ public class Bounce : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!hasObjectMoved && GameManager.sharedInstance.gameStarted)
-        {
+        if (!hasObjectMoved && GameManager.sharedInstance.gameStarted) {
             rb2d.velocity = Vector2.right * speed;
             hasObjectMoved = true;
         }
+
+        targetTime += Time.deltaTime;
+
+        if (targetTime >= limitTime) {
+            timerEnded();
+        }
+    }
+
+    private void timerEnded()
+    {
+        speed++;
+        resetTimer();
+    }
+
+    private void resetTimer()
+    {
+        targetTime = 0.0f;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -53,10 +70,16 @@ public class Bounce : MonoBehaviour
 
     private int getObjectX(Collision2D collision)
     {
-        if (collision.gameObject.name == "RacketLeft" || collision.gameObject.name == "WallLeft") {
+        if (
+            collision.gameObject.name == "RacketLeft" ||
+            collision.gameObject.name == "WallLeft"
+        ) {
             x = 1;
         }
-        else if (collision.gameObject.name == "RacketRight" || collision.gameObject.name == "WallRight") {
+        else if (
+            collision.gameObject.name == "RacketRight" ||
+            collision.gameObject.name == "WallRight"
+        ) {
             x = -1;
         }
 
