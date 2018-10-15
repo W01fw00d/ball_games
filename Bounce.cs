@@ -47,6 +47,8 @@ public class Bounce : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         rb2d.velocity = getObjectVelocity(collision);
+
+        //transmitColor(collision);
     }
 
     private Vector2 getObjectVelocity(Collision2D collision)
@@ -89,5 +91,10 @@ public class Bounce : MonoBehaviour
     float hitFactor(Vector2 ballPosition, Vector2 racketPosition, float racketHeight)
     {
         return (ballPosition.y - racketPosition.y) / racketHeight;
+    }
+
+    private void transmitColor(Collision2D collision)
+    {
+        collision.gameObject.GetComponent<SpriteRenderer>().color = GetComponent<SpriteRenderer>().color;
     }
 }
