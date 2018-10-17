@@ -9,23 +9,16 @@ public class VerticalMovement : MonoBehaviour {
 
     private Rigidbody2D rb2d;
 
-    void Awake () {
-        
-    }
-
 	// Use this for initialization
-	void Start () {
+	void Start()
+    {
 		rb2d = GetComponent<Rigidbody2D>();
-	}
-
-	// Update is called once per frame
-	void Update () {
-
 	}
 
     // It's called at a fixed rate
     // Add here physics calculations
-    void FixedUpdate () {
+    void FixedUpdate()
+    {
         //Debug.Log(vertical);
         if (GameManager.sharedInstance.gameStarted)
         {

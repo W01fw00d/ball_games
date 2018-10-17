@@ -5,9 +5,11 @@ using UnityEngine;
 public class Breakable : MonoBehaviour {
 
     public int resistance = 4;
+    private int maxResistance;
 
     // Use this for initialization
     void Start () {
+        maxResistance = resistance;
     }
 	
 	// Update is called once per frame
@@ -19,10 +21,10 @@ public class Breakable : MonoBehaviour {
     {
         if (resistance > 0) {
             resistance--;
-            addaptOpacity();
-
             if (resistance == 0) {
                 gameObject.SetActive(false);
+            } else {
+                addaptOpacity();
             }
 
         }
@@ -31,7 +33,7 @@ public class Breakable : MonoBehaviour {
     private void addaptOpacity()
     {
         Color tmp = gameObject.GetComponent<Renderer>().material.color;
-        tmp.a = 0.25f * resistance;
+        tmp.a = (1.0f / maxResistance) * resistance;
         gameObject.GetComponent<Renderer>().material.color = tmp;
     }
 
