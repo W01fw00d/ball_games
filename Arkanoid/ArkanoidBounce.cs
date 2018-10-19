@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class ArkanoidBounce : MonoBehaviour
 {
-    public float speed = 15;
+    public float speed = 7;
+
+    [SerializeField]
+    [Range(1.01f, 1.05f)]
+    public float difficultyFactor = 1.01f;
 
     private Rigidbody2D rb2d;
     private float x;
@@ -17,6 +21,17 @@ public class ArkanoidBounce : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
 
         rb2d.velocity = Vector2.up * speed;
+
+        StartCoroutine(UpgradeDifficulty());
+    }
+
+    IEnumerator UpgradeDifficulty()
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(1.0f);
+            speed *= difficultyFactor;
+        }
     }
 
     // Update is called once per frame
@@ -31,6 +46,7 @@ public class ArkanoidBounce : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         rb2d.velocity = getObjectVelocity(collision);
+        GetComponent<AudioSource>().Play();
     }
 
     private Vector2 getObjectVelocity(Collision2D collision)
